@@ -18,8 +18,16 @@ type User {
 }
 
 type Query {
-    users: [User]
+    getUsers: [User]
   }
 
+type Query {
+  getSingleUser(id: ID!): User
+}  
+  
+type Mutation {
+createUser(username: String!, email: String!, password: String!): User
+removeBook(bookId: ID!): Book
+  }
 `
 module.exports = typeDefs;
