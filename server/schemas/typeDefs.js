@@ -19,14 +19,16 @@ type User {
 
 type Query {
     getUsers: [User]
-  }
+    getSingleUser(id: ID!): [User]
+  } 
 
-type Query {
-  getSingleUser(id: ID!): User
-}  
+  type AuthResponse {
+    user: User
+    token: String
+  }  
   
 type Mutation {
-createUser(username: String!, email: String!, password: String!): User
+    createUser(username: String!, email: String!, password: String!): AuthResponse
 removeBook(bookId: ID!): Book
   }
 `
