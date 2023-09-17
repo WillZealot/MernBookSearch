@@ -14,12 +14,14 @@ type User {
     id: ID
     username: String
     email: String
+    password: String
     savedBooks: [Book]
 }
 
 type Query {
+
     getUsers: [User]
-    getSingleUser(id: ID!): [User]
+    getSingleUser(id: ID!): User
   } 
 
   type AuthResponse {
@@ -29,7 +31,8 @@ type Query {
   
 type Mutation {
     createUser(username: String!, email: String!, password: String!): AuthResponse
-removeBook(bookId: ID!): Book
+    removeBook(bookId: ID!): Book
+    login(username: String!, email: String!, password: String!): AuthResponse
   }
 `
 module.exports = typeDefs;
