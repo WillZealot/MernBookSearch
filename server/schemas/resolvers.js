@@ -15,9 +15,16 @@ const resolvers = {
             }
         },
 
-        getSingleUser : async (_, {id}) => {
+        getSingleUser : async (_, { id, params }) => {
             try {
-                const user = await User.findById(id);
+              const userId = id || (params && params.id);
+
+              if (!userId) {
+                // Handle the case where neither `id` nor `params.id` is provided.
+                return null;
+              }
+
+                const user = await User.findById(userId);
                 return user || null;
             } catch (error) {
                 throw new Error(`Failed To Retrieve Users: $(error.message)`)
