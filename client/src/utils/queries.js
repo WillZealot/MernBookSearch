@@ -18,5 +18,6 @@ query Query($getSingleUserId: ID!) {
   }
 `;
 
-//export const QUERY_BOOK = gql`
+//export const SEARCH_BOOKS = gql`
+
 //`;

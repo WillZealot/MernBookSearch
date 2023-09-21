@@ -2,13 +2,19 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
 type Book {
-    bookId: ID
-    title: String
-    authors: String
-    description: String
-    image: String
-    link: String
+  id: ID!
+  title: String!
+  authors: [String]!
+  publishedDate: String
+  description: String
+  image: String
 }
+
+type ImageLinks {
+  smallThumbnail: String
+  thumbnail: String
+}
+
 
 type User {
     id: ID
@@ -19,9 +25,9 @@ type User {
 }
 
 type Query {
-
     getUsers: [User]
     getSingleUser(id: ID!): User
+    searchGoogleBooks(query: String!): [Book]
   } 
 
   type AuthResponse {
