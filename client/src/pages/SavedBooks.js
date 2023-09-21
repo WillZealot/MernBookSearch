@@ -7,7 +7,7 @@ import {
   Col
 } from 'react-bootstrap';
 
-import { getMe, deleteBook } from '../utils/API';
+import { getMe, deleteBook } from '../utils/API'; // need to update and delete these too
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 

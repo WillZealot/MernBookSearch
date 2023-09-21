@@ -18,6 +18,14 @@ query Query($getSingleUserId: ID!) {
   }
 `;
 
-//export const SEARCH_BOOKS = gql`
-
-//`;
+export const SEARCH_BOOKS = gql`
+query Query($query: String!) {
+  searchGoogleBooks(query: $query) {
+    id
+    title
+    authors
+    description
+    image
+  }
+}
+`;

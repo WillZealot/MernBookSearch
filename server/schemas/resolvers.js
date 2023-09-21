@@ -39,25 +39,23 @@ const resolvers = {
             }
             const data = await response.json();
             const items = data.items || [];
-            
             // Map the retrieved data to the custom Book type
-            const books = items.map((item) => ({
+            const book = items.map((item) => ({
               id: item.id,
               title: item.volumeInfo.title,
               subtitle: item.volumeInfo.subtitle,
               authors: item.volumeInfo.authors || [],
               publishedDate: item.volumeInfo.publishedDate,
               description: item.volumeInfo.description,
-              image: item.volumeInfo.previewLink || null, // Add thumbnail
+              image: item.volumeInfo.imageLinks.thumbnail|| [], // Add thumbnail
             }));
-    
-            return books;
+        
+            return book; // Return an array of books
           } catch (error) {
             console.error(error);
             throw new Error('An error occurred while fetching data from Google Books API.');
           }
         },
-        
     },
     Mutation:{
         createUser : async (_, args) => {
