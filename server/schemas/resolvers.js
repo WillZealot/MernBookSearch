@@ -1,7 +1,8 @@
 // Import necessary modules and dependencies
-const { User } = require('../models'); // Replace with your user model import
+const { User, Book } = require('../models'); // Replace with your user model import
 const bcrypt = require('bcrypt'); // For password hashing
 const { signToken } = require('../utils/auth'); //import to create token
+const bookSchema = require('../models/Book');
 
 const resolvers = {
 
@@ -97,10 +98,8 @@ const resolvers = {
           login: async (_, args) => {
             try {
               const { username, email, password } = args;
-    console.log(args);      
               // Find the user by either username or email
-              const user = await User.findOne({ $or: [{ username }, { email }] });
-    console.log(user);      
+              const user = await User.findOne({ $or: [{ username }, { email }] });      
               if (!user) {
                 throw new Error("User Not Found");
               }
@@ -124,8 +123,21 @@ const resolvers = {
             } catch (error) {
               throw new Error(`Failed To Locate User : ${error.message}`);
             }
-          },          
-    } 
+          },      
+          saveBook : async (_, args) => {
+          try {
+            const { bookId } = args;
+            console.log(args);  
+            const book = await Book.findById({bookId});      
+              if (!book) {
+                throw new Error("User Not Found");
+              }  
+             return book; 
+          } catch (error){
+            console.log(`Error Message: ${error}`)
+          }
+        },
+      }
 }
 
 

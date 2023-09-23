@@ -7,15 +7,23 @@ import {
   Col
 } from 'react-bootstrap';
 
-import { getMe, deleteBook } from '../utils/API'; // need to update and delete these too
+import { getMe, 
+  deleteBook } from '../utils/API'; // need to update and delete these too
 import Auth from '../utils/auth';
+
+import { useQuery } from '@apollo/client'
+
+//import { QUERY_USER } from '../utils/queries';
+
 import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
+
   const [userData, setUserData] = useState({});
 
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
+  //const [ getMe ] = useQuery(QUERY_USER); importing the query for a single user i need to test if savebook works first
 
   useEffect(() => {
     const getUserData = async () => {

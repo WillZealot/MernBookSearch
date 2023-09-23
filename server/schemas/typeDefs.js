@@ -37,8 +37,9 @@ type Query {
   
 type Mutation {
     createUser(username: String!, email: String!, password: String!): AuthResponse
-    removeBook(bookId: ID!): Book
     login(username: String, email: String!, password: String!): AuthResponse
+    saveBook(bookId : String!) : Book
+    removeBook(bookId: ID!): Book
   }
 `
 module.exports = typeDefs;
